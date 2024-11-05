@@ -18,3 +18,5 @@ pnpm install
 # Vercel CLI install
 pnpm add -g vercel@latest
 
+# Prisma install
+pnpm add prisma --save-dev
