@@ -3,18 +3,17 @@
 {
   "name": "blogr-nextjs-prisma",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-  "customizations": {
-    "vscode": {"settings": {
-      "terminal.integrated.shell.linux": "/bin/bash"
-    }}
-  },
+  // "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "remoteEnv": {
     "PNPM_HOME": "/home/node/.local/share/pnpm",
     "PATH": "${containerEnv:PNPM_HOME}:${containerEnv:PATH}",
     "SHELL": "/bin/bash"
   },
-  "postCreateCommand": "pnpm setup"
+  // "postCreateCommand": "pnpm setup"
+  "postCreateCommand": "bash docker-entrypoint.sh"
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
