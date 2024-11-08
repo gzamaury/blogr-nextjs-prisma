@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import Router from 'next/router';
+import { useSession } from 'next-auth/react';
 
 const Draft: React.FC = () => {
+    
+  const { data: session } = useSession();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  if (!session) {
+    return (
+      <Layout>
+        <h1>New Draft</h1>
+        <div>You need to be authenticated to create a post.</div>
+      </Layout>
+    );
+  }
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
